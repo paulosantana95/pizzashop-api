@@ -1,4 +1,6 @@
 {
+  "version": "1.0.0",
+  "author": "Paulo Santana",
   "name": "pizzashop-api",
   "module": "index.ts",
   "type": "module",
@@ -11,15 +13,9 @@
     "generate": "drizzle-kit generate",
     "old-migrate": "bun src/db/migrate.ts",
     "migrate": "drizzle-kit migrate",
-    "studio": "bun --env-file=.env.local drizzle-kit studio"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "chalk": "^5.4.1",
-    "drizzle-kit": "^0.30.5"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "seed": "bun src/db/seed.ts",
+    "studio": "bun --env-file=.env.local drizzle-kit studio",
+    "lint": "eslint --fix src --ext .ts"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
@@ -27,5 +23,19 @@
     "elysia": "^1.2.25",
     "postgres": "^3.4.5",
     "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@faker-js/faker": "^9.6.0",
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/bun": "latest",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "chalk": "^5.4.1",
+    "drizzle-kit": "^0.30.5",
+    "eslint": "^9.23.0",
+    "eslint-plugin-drizzle": "^0.2.3",
+    "jiti": "^2.4.2",
+    "typescript": "^5.8.2"
   }
 }
