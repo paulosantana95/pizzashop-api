@@ -3,6 +3,9 @@ import { db } from '../../db/connection'
 import { createId } from '@paralleldrive/cuid2'
 import { authLinks } from '../../db/schema'
 import { env } from '../../env'
+import { mail } from '../../lib/mail'
+
+import nodemailer from 'nodemailer'
 
 export const sendAuthLink = new Elysia().post(
   '/authenticate',
@@ -26,9 +29,19 @@ export const sendAuthLink = new Elysia().post(
       code: authLinkCode,
     })
 
-    // Enviar um e-mail com o link de autenticação
-
     const authLink = new URL('/auth-links/authenticate', env.API_BASE_URL)
+
+    const info = await mail.sendMail({
+      from: {
+        name: 'Pizza Shop',
+        address: 'hi@pizzashop.com',
+      },
+      to: email,
+      subject: 'Authenticate with Pizza Shop',
+      text: `Use the following link to authenticate with Pizza Shop: ${authLink.toString()}`,
+    })
+
+    console.log(nodemailer.getTestMessageUrl(info))
 
     authLink.searchParams.set('code', authLinkCode)
     authLink.searchParams.set('redirect', env.AUTH_REDIRECT_URL)
