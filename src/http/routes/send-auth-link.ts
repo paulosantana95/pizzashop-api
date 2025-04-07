@@ -30,6 +30,8 @@ export const sendAuthLink = new Elysia().post(
     })
 
     const authLink = new URL('/auth-links/authenticate', env.API_BASE_URL)
+    authLink.searchParams.set('code', authLinkCode)
+    authLink.searchParams.set('redirect', env.AUTH_REDIRECT_URL)
 
     const info = await mail.sendMail({
       from: {
@@ -42,11 +44,6 @@ export const sendAuthLink = new Elysia().post(
     })
 
     console.log(nodemailer.getTestMessageUrl(info))
-
-    authLink.searchParams.set('code', authLinkCode)
-    authLink.searchParams.set('redirect', env.AUTH_REDIRECT_URL)
-
-    console.log(authLink.toString())
   },
   {
     body: t.Object({

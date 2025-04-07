@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { text, pgTable, timestamp } from 'drizzle-orm/pg-core'
-import { users } from './users'
+import { users } from '.'
 
 export const authLinks = pgTable('auth_links', {
   id: text('id')
@@ -8,7 +8,9 @@ export const authLinks = pgTable('auth_links', {
     .primaryKey(),
   code: text('code').notNull().unique(),
   userId: text('user_id')
-    .references(() => users.id)
+    .references(() => users.id, {
+      onDelete: 'cascade',
+    })
     .notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 })

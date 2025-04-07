@@ -36,6 +36,20 @@
       "when": 1743465018971,
       "tag": "0004_goofy_mother_askani",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1743949739385,
+      "tag": "0005_noisy_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1743988777852,
+      "tag": "0006_fixed_jamie_braddock",
+      "breakpoints": true
     }
   ]
 }
